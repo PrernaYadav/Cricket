@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Cricket</string>
+
+    <string name="indiawon">India Won By 6 Wickets</string>
+    <string name="matchodd">Match Odds</string>
+    <string name="timer">00-00</string>
+    <string name="fav">Favourite</string>
+    <string name="india">INDIA</string>
+
+    <string name="session">Session</string>
+    <string name="timer2">00-00</string>
+    <string name="ran">Run-Ball</string>
+    <string name="timer3">00/00</string>
+
+    <string name="over">Over</string>
+    <string name="dash">---</string>
+    <string name="crr">CRR=</string>
+    <string name="runrate">5.04</string>
+
+    <string name="ind">IND</string>
+    <string name="score">232/4</string>
+    <string name="over2">46.0 Over</string>
+
+    <string name="date">14-10-2017 13:29 IST</string>
+    <string name="time">13:29 IST</string>
+
+    <string name="runs">4 Runs</string>
+    <string name="setprice">Set Price</string>
+    <string name="submit">Submit</string>
+
+    <string name="venue">M chinnaswamy bangalore IN</string>
+    <string-array name="lay_back">
+        <item>lay</item>
+        <item>back</item>
+
+    </string-array>
+
+    <string-array name="symbol_array">
+        <item>+</item>
+        <item>-</item>
+        <item>=</item>
+        <item>+=</item>
+        <item>-=</item>
+
+
+    </string-array>
+</resources>

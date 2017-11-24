@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "719736420584",
+    "firebase_url": "https://cricket-2308f.firebaseio.com",
+    "project_id": "cricket-2308f",
+    "storage_bucket": "cricket-2308f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719736420584:android:e7b02814676d871c",
+        "android_client_info": {
+          "package_name": "com.example.prashantbehera.cricket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "719736420584-15bpvtsut68plcggtdsp8eupnvtbsf3j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZb-1oSIXlzi946joqJa2lsSWHlFDzng0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

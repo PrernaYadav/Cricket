@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Market Price"
+        android:padding="10dp"
+        android:textAppearance="?android:textAppearanceMedium"/>
+
+    <EditText
+        android:id="@+id/et_favrt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:hint="Enter Favourite Team"
+        android:background="@drawable/border_edittext"
+        android:layout_marginTop="10dp" >
+
+    </EditText>
+
+    <Spinner
+        android:id="@+id/sp_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/border_edittext"
+        android:layout_marginTop="10dp"
+        android:entries="@array/lay_back">
+    </Spinner>
+
+    <EditText
+        android:id="@+id/et_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border_edittext"
+        android:hint="Enter Amount"
+        android:padding="10dp">
+
+    </EditText>
+
+    <Spinner
+        android:id="@+id/sp_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:entries="@array/symbol_array"
+        android:background="@drawable/border_edittext"
+       >
+    </Spinner>
+    <!--
+        <EditText
+            android:id="@+id/et_alert2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:hint="Enter Lay Price"
+           android:background="@drawable/border_edittext"
+            android:layout_marginTop="10dp" >
+
+            </EditText>
+
+
+        <EditText
+            android:id="@+id/et_alert3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:hint="Enter Down Price "
+            android:background="@drawable/border_edittext"
+            android:layout_marginTop="10dp" >
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/et_alert4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_edittext"
+            android:hint="Enter Favourite Team  "
+            android:padding="10dp">
+
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="#00BCD4"
+            android:text="E.g:20-20"/>
+
+    -->
+
+
+</LinearLayout>

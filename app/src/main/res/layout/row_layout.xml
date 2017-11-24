@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_image1"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="18dp"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/india" />
+
+            <TextView
+                android:id="@+id/tv_country1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/india"
+                android:textAllCaps="true"
+                android:textColor="@color/lightblue"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/india"
+                android:textAllCaps="true"
+                android:textColor="@color/lightblue"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                android:textColor="@color/darkred"
+                android:textSize="10sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/time"
+                android:textAllCaps="true"
+                android:visibility="gone"
+                android:textColor="@color/darkred"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_match_format"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="ODI"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textColor="@color/lightblue" />
+
+            <TextView
+                android:id="@+id/tv_blink"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="LIVE"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textColor="@color/darkred" />
+
+           <!-- <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="mp"
+                android:id="@+id/market_price"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />-->
+
+            <ImageView
+                android:id="@+id/bell"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:src="@drawable/bell_iconoutline"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textColor="@color/darkred" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_image2"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="18dp"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:src="@mipmap/india" />
+
+            <TextView
+                android:id="@+id/tv_country2"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Australia"
+                android:textAllCaps="true"
+                android:textColor="@color/lightblue"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_venue"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="@string/venue"
+                android:textAllCaps="true"
+                android:textColor="@color/darkred"
+                android:textSize="10sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/black" />
+</android.support.v7.widget.CardView>

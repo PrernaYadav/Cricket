@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -62,7 +63,7 @@ import java.util.Map;
 
 public class ActivityLive extends AppCompatActivity {
 
-    public String team1, team2, image1, image2, date, format, ground;
+    public String team1, team2, image1, image2, date, format, ground, MatchId,idw;
     ProgressDialog pd;
     private String id, gcm_token, mp,mp2,sp1,sp2;
     public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -72,6 +73,7 @@ public class ActivityLive extends AppCompatActivity {
             mp2 = intent.getStringExtra("quantity2");
             sp1 = intent.getStringExtra("spinner1");
             sp2 = intent.getStringExtra("spinner2");
+            idw = intent.getStringExtra("idw");
             datasending();
 
         }
@@ -86,6 +88,14 @@ public class ActivityLive extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live);
+
+
+
+
+
+
+       final SharedPreferences prefs = getSharedPreferences("MatchId", MODE_PRIVATE);
+         MatchId = prefs.getString("iddddddd", null);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Cricket Ground Line");
@@ -155,7 +165,9 @@ public class ActivityLive extends AppCompatActivity {
                 params.put("rate", mp2);
                 params.put("rate_type", sp1);
                 params.put("rate_varriation", sp2);
-                params.put("match_id", id);
+                params.put("match_id", idw);
+
+               Log.i("hgsah",""+params);
                 return params;
             }
         };
@@ -217,6 +229,7 @@ public class ActivityLive extends AppCompatActivity {
                         live.setId(id);
                         live.setImageTeam1(image1);
                         live.setImageTeam2(image2);
+                        Log.i("iiiidddd",id);
 
 //                        homeList.clear();
                         liveArrayList.add(live);

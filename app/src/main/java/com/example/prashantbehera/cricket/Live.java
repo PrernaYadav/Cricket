@@ -8,7 +8,7 @@ public class Live {
     public String Ground;
     public String Date;
     public String Format;
-    public String Time, id;
+    public String Time, ido;
     public String marketPrice;
     private String imageTeam1;
     private String imageTeam2;
@@ -28,7 +28,7 @@ public class Live {
         this.Ground = Ground;
         this.Date = Date;
         this.Format = Format;
-        this.id = id;
+        this.ido = id;
         this.marketPrice = marketPrice;
     }
 
@@ -41,11 +41,11 @@ public class Live {
     }
 
     public String getId() {
-        return id;
+        return ido;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.ido = id;
     }
 
     public String getMarketPrice() {

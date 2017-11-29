@@ -3,6 +3,7 @@ package com.example.prashantbehera.cricket;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,7 @@ public class AdapterLiveMatch extends RecyclerView.Adapter<AdapterLiveMatch.Live
     private ArrayList<LiveMatch> liveMatch;
     private Activity activity;
     Context ctx;
-    String fav;
+    String fav,matchid;
 
 
     public AdapterLiveMatch(ArrayList<LiveMatch> liveMatch, Activity activity, Context ctx) {
@@ -57,7 +58,7 @@ public class AdapterLiveMatch extends RecyclerView.Adapter<AdapterLiveMatch.Live
         Context ctx;
         ArrayList<LiveMatch> liveMatch = new ArrayList<LiveMatch>();
         public ImageView imageViewTeam1, imageViewTeam2,imageViewBat,imageViewBall;
-        public TextView team1, team2, ground, match_format, date, time, id;
+        public TextView team1, team2, ground, match_format, date, time, iiiid;
 //        public Button btnJoinEvent;
 
         public LiveMatchHolder(final View itemView1, final Context ctx, ArrayList<LiveMatch> liveMatch) {
@@ -74,11 +75,13 @@ public class AdapterLiveMatch extends RecyclerView.Adapter<AdapterLiveMatch.Live
             team2 = (TextView) itemView1.findViewById(R.id.tv_country2);
 
             ground = (TextView) itemView1.findViewById(R.id.tv_venue);
-            id = (TextView) itemView1.findViewById(R.id.id);
+            iiiid = (TextView) itemView1.findViewById(R.id.id);
             match_format = (TextView) itemView1.findViewById(R.id.tv_match_format);
             date = (TextView) itemView1.findViewById(R.id.tv_date);
             time = (TextView) itemView1.findViewById(R.id.tv_time);
 //            btnJoinEvent = (Button) itemView1.findViewById(R.id.btn_join_event);
+
+
 
 
             itemView1.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +91,8 @@ public class AdapterLiveMatch extends RecyclerView.Adapter<AdapterLiveMatch.Live
                     TextView textView = (TextView) itemView1.findViewById(R.id.id);
                     String iddd = textView.getText().toString();
                     Intent intent = new Intent(activity, ActivityScore.class);
+
+
 
                     intent.putExtra("id", iddd);
 
@@ -103,7 +108,7 @@ public class AdapterLiveMatch extends RecyclerView.Adapter<AdapterLiveMatch.Live
         }
 
         public void setId(String id1) {
-            id.setText(id1);
+            iiiid.setText(id1);
         }
 
         public void setteam2(String team_2) {

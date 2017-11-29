@@ -2,7 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#E6E6E6"
     android:orientation="vertical">
 
@@ -45,6 +45,16 @@
 
             <TextView
                 android:id="@+id/id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:textColor="@color/lightblue"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/iidd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/india"

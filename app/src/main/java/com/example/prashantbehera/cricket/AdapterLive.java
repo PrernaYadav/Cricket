@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,24 +33,24 @@ import static com.example.prashantbehera.cricket.R.string.fav;
  */
 
 public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> implements RecyclerView.OnClickListener {
+    private static final String dialog_pattern = "[0-9]+-[0-9]+";
+    Context ctx;
+    String mp, mp2, sp1, sp2,iddd;
     private ArrayList<Live> live;
     private Activity activity;
-    Context ctx;
-    String mp,mp2,sp1,sp2;
-   private static final String dialog_pattern ="[0-9]+-[0-9]+";
 
 
-    public AdapterLive(ArrayList<Live> live, Activity activity,Context ctx) {
+    public AdapterLive(ArrayList<Live> live, Activity activity, Context ctx) {
         this.live = live;
         this.activity = activity;
-        this.ctx=ctx;
+        this.ctx = ctx;
 
     }
 
     @Override
     public LiveHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_layout, parent, false);
-        return new LiveHolder(view,ctx,live);
+        return new LiveHolder(view, ctx, live);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> im
         holder.setmatch_format(liveobject.getFormat());
         holder.settime(liveobject.getTime());
         holder.setId(liveobject.getId());
-       // holder.setMarketPrice(liveobject.getMarketPrice());
+        // holder.setMarketPrice(liveobject.getMarketPrice());
 
         Glide.with(activity).load(liveobject.getImageTeam1()).into(holder.imageViewTeam1);
         Glide.with(activity).load(liveobject.getImageTeam2()).into(holder.imageViewTeam2);
@@ -81,11 +83,12 @@ public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> im
     }
 
 
-    public class LiveHolder extends RecyclerView.ViewHolder implements RecyclerView.OnClickListener{
+    public class LiveHolder extends RecyclerView.ViewHolder implements RecyclerView.OnClickListener {
+        public ImageView imageViewTeam1, imageViewTeam2, bell;
+        TextView textView;
+        public TextView team1, team2, ground, match_format, date, time, id, marketPrice;
         Context ctx;
         ArrayList<Live> live = new ArrayList<Live>();
-        public ImageView imageViewTeam1, imageViewTeam2,bell;
-        public TextView team1, team2, ground, match_format, date, time,id,marketPrice;
 //        public Button btnJoinEvent;
 
         public LiveHolder(final View itemView1, final Context ctx, ArrayList<Live> live) {
@@ -97,22 +100,37 @@ public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> im
             imageViewTeam2 = (ImageView) itemView1.findViewById(R.id.iv_image2);
             team1 = (TextView) itemView1.findViewById(R.id.tv_country1);
             team2 = (TextView) itemView1.findViewById(R.id.tv_country2);
-           // marketPrice = (TextView) itemView1.findViewById(R.id.market_price);
+            // marketPrice = (TextView) itemView1.findViewById(R.id.market_price);
             ground = (TextView) itemView1.findViewById(R.id.tv_venue);
             id = (TextView) itemView1.findViewById(R.id.id);
             match_format = (TextView) itemView1.findViewById(R.id.tv_match_format);
             date = (TextView) itemView1.findViewById(R.id.tv_date);
             time = (TextView) itemView1.findViewById(R.id.tv_time);
+
+
+
+            /* textView = (TextView) itemView1.findViewById(R.id.id);
+          final   String iddd = textView.getText().toString();
+
+            SharedPreferences sharedPreferences = itemView1.getContext().getSharedPreferences("MatchId", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("iddddddd", iddd);
+            editor.commit();*/
 //            btnJoinEvent = (Button) itemView1.findViewById(R.id.btn_join_event);
 
 
             bell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    textView = (TextView) itemView1.findViewById(R.id.id);
+                        iddd = textView.getText().toString();
+                    Log.i("iddd",iddd);
+                    SharedPreferences sharedPreferences = itemView1.getContext().getSharedPreferences("MatchId", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("iddddddd", iddd);
+                    editor.commit();
                     //change bel icon
                     bell.setImageResource(R.drawable.bell_iconfilled);
-
 
 
                     //Alert Dialog
@@ -128,42 +146,39 @@ public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> im
 
                     final EditText userInput2 = (EditText) promptsView.findViewById(R.id.et_favrt);
                     final EditText userInput3 = (EditText) promptsView.findViewById(R.id.et_amount);
-                    final Spinner spinner1 = (Spinner)promptsView.findViewById(R.id.sp_1);
-                    final Spinner spinner2 = (Spinner)promptsView.findViewById(R.id.sp_2);
-
-
-
+                    final Spinner spinner1 = (Spinner) promptsView.findViewById(R.id.sp_1);
+                    final Spinner spinner2 = (Spinner) promptsView.findViewById(R.id.sp_2);
 
 
                     // set dialog message
                     alertDialogBuilder.setCancelable(false).setPositiveButton("OK",
                             new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
+                                public void onClick(DialogInterface dialog, int id) {
 
                                     bell.setClickable(true);
-                                        mp = userInput2.getText().toString();
+                                    mp = userInput2.getText().toString();
                                     mp2 = userInput3.getText().toString().toLowerCase();
                                     sp1 = spinner1.getSelectedItem().toString();
                                     sp2 = spinner2.getSelectedItem().toString();
 
 
-
-                                        Intent intent = new Intent("custom-message");
+                                    Intent intent = new Intent("custom-message");
                                     intent.putExtra("quantity", mp);
                                     intent.putExtra("quantity2", mp2);
                                     intent.putExtra("spinner1", sp1);
                                     intent.putExtra("spinner2", sp2);
+                                    intent.putExtra("idw", iddd);
 
                                     LocalBroadcastManager.getInstance(ctx).sendBroadcast(intent);
 
                                 }
                             })
                             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.cancel();
-                                            bell.setImageResource(R.drawable.bell_iconoutline);
-                                        }
-                                    });
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                    bell.setImageResource(R.drawable.bell_iconoutline);
+                                }
+                            });
                     // create alert dialog
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     // show it
@@ -176,14 +191,18 @@ public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> im
                 @Override
                 public void onClick(View v) {
 
-                    TextView textView=(TextView)itemView1.findViewById(R.id.id);
-                    String iddd=textView.getText().toString();
+                    /*TextView textView = (TextView) itemView1.findViewById(R.id.id);
+                    String iddd = textView.getText().toString();*/
 
                     Intent intent = new Intent(activity, HomeWebView.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("id", iddd);
-                    intent.putExtra("fav",mp);
+                    intent.putExtra("fav", mp);
                     activity.startActivity(intent);
+
+
+
+
                 }
             });
 
@@ -234,8 +253,8 @@ public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> im
         public void onClick(View v) {
             int position = getAdapterPosition();
             Live live = this.live.get(position);
-           // String liveeee=live.getId();
-           // Toast.makeText(this.ctx,live,Toast.LENGTH_LONG).show();
+            // String liveeee=live.getId();
+            // Toast.makeText(this.ctx,live,Toast.LENGTH_LONG).show();
             Intent intent = new Intent(activity, ActivityScore.class);
             intent.putExtra("id", live.getId());
 

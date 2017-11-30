@@ -84,17 +84,23 @@ public class ActivityLive extends AppCompatActivity {
     //    public Jsonparse jsonParser = new Jsonparse(this);
     private ArrayList<Live> liveArrayList;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live);
 
+        ArrayList<String> teamname,team;
+        team= new ArrayList<String>();
 
 
 
 
 
-       final SharedPreferences prefs = getSharedPreferences("MatchId", MODE_PRIVATE);
+
+
+
+        final SharedPreferences prefs = getSharedPreferences("MatchId", MODE_PRIVATE);
          MatchId = prefs.getString("iddddddd", null);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -229,7 +235,13 @@ public class ActivityLive extends AppCompatActivity {
                         live.setId(id);
                         live.setImageTeam1(image1);
                         live.setImageTeam2(image2);
-                        Log.i("iiiidddd",id);
+
+
+                       /* SharedPreferences sharedPreferences =getApplicationContext().getSharedPreferences("teamname", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("t1", team1);
+                        editor.putString("t2", team2);
+                        editor.commit();*/
 
 //                        homeList.clear();
                         liveArrayList.add(live);

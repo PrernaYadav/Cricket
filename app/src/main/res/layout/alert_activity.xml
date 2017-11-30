@@ -13,7 +13,16 @@
         android:padding="10dp"
         android:textAppearance="?android:textAppearanceMedium"/>
 
-    <EditText
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_edittext"
+        android:padding="10dp"/>
+
+
+   <!-- <EditText
         android:id="@+id/et_favrt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +31,7 @@
         android:background="@drawable/border_edittext"
         android:layout_marginTop="10dp" >
 
-    </EditText>
+    </EditText>-->
 
     <Spinner
         android:id="@+id/sp_1"

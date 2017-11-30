@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.example.prashantbehera.cricket.R.string.fav;
 
 /**
@@ -35,9 +37,15 @@ import static com.example.prashantbehera.cricket.R.string.fav;
 public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> implements RecyclerView.OnClickListener {
     private static final String dialog_pattern = "[0-9]+-[0-9]+";
     Context ctx;
-    String mp, mp2, sp1, sp2,iddd;
+    String mp, mp2, sp1, sp2,iddd,idd;
     private ArrayList<Live> live;
     private Activity activity;
+    String teamname1,teamname2;
+    String[] team = new String[2];
+
+
+
+
 
 
     public AdapterLive(ArrayList<Live> live, Activity activity, Context ctx) {
@@ -109,6 +117,9 @@ public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> im
 
 
 
+
+
+
             /* textView = (TextView) itemView1.findViewById(R.id.id);
           final   String iddd = textView.getText().toString();
 
@@ -122,10 +133,21 @@ public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> im
             bell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     textView = (TextView) itemView1.findViewById(R.id.id);
                         iddd = textView.getText().toString();
-                    Log.i("iddd",iddd);
-                    SharedPreferences sharedPreferences = itemView1.getContext().getSharedPreferences("MatchId", Context.MODE_PRIVATE);
+
+
+                    teamname1=team1.getText().toString();
+                    teamname2=team2.getText().toString();
+                    Log.d("teammmm1",teamname1);
+                    Log.d("teammmm2",teamname2);
+
+
+                    team[0]=teamname1;
+                    team[1]=teamname2;
+
+                    SharedPreferences sharedPreferences = itemView1.getContext().getSharedPreferences("MatchId", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("iddddddd", iddd);
                     editor.commit();
@@ -141,13 +163,42 @@ public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> im
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                             ctx);
 
+
+
+
+
                     // set prompts.xml to alertdialog builder
                     alertDialogBuilder.setView(promptsView);
 
-                    final EditText userInput2 = (EditText) promptsView.findViewById(R.id.et_favrt);
+                       final Spinner spinnerTeam =(Spinner) promptsView.findViewById(R.id.spinner1);
+                  //  final EditText userInput2 = (EditText) promptsView.findViewById(R.id.et_favrt);
                     final EditText userInput3 = (EditText) promptsView.findViewById(R.id.et_amount);
                     final Spinner spinner1 = (Spinner) promptsView.findViewById(R.id.sp_1);
                     final Spinner spinner2 = (Spinner) promptsView.findViewById(R.id.sp_2);
+
+
+
+                    spinnerTeam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                    ArrayAdapter aa = new ArrayAdapter(itemView1.getContext(),android.R.layout.simple_spinner_item,team);
+                    aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    //Setting the ArrayAdapter data on the Spinner
+                    spinnerTeam.setAdapter(aa);
+
+
+
 
 
                     // set dialog message
@@ -156,7 +207,7 @@ public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> im
                                 public void onClick(DialogInterface dialog, int id) {
 
                                     bell.setClickable(true);
-                                    mp = userInput2.getText().toString();
+                                    mp = spinnerTeam.getSelectedItem().toString();
                                     mp2 = userInput3.getText().toString().toLowerCase();
                                     sp1 = spinner1.getSelectedItem().toString();
                                     sp2 = spinner2.getSelectedItem().toString();
@@ -191,14 +242,17 @@ public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> im
                 @Override
                 public void onClick(View v) {
 
+                    idd=id.getText().toString();
+
                     /*TextView textView = (TextView) itemView1.findViewById(R.id.id);
                     String iddd = textView.getText().toString();*/
 
                     Intent intent = new Intent(activity, HomeWebView.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.putExtra("id", iddd);
+                    intent.putExtra("id", idd);
                     intent.putExtra("fav", mp);
                     activity.startActivity(intent);
+
 
 
 
@@ -261,5 +315,7 @@ public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> im
             activity.startActivity(intent);
         }
     }
+
+
 
 }

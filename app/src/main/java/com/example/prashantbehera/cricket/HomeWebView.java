@@ -96,11 +96,22 @@ public class HomeWebView extends AppCompatActivity  {
 
         if (isOnline()) {
             webview.setVisibility(View.VISIBLE);
- /*   webview.setWebViewClient(new MyCustomWebViewClient());
-    webview.getSettings().setJavaScriptEnabled(true);
-    webview.loadUrl(url);*/
+
+
             web();
-            texttospeech();
+              Runnable runnable = new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        web();
+                                        texttospeech();
+                                        handler.postDelayed(this, 5000);
+                                    }
+                                };
+
+//Start
+                                handler.postDelayed(runnable, 5000);
+
+
 
 
 //
@@ -120,9 +131,17 @@ public class HomeWebView extends AppCompatActivity  {
                     webview.setVisibility(View.VISIBLE);
 
 
-                    web();
-                    texttospeech();
-//                    StartSpeak(textaa);
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            web();
+                            texttospeech();
+                            handler.postDelayed(this, 5000);
+                        }
+                    };
+
+//Start
+                    handler.postDelayed(runnable, 5000);
 
 
 
@@ -231,9 +250,9 @@ public class HomeWebView extends AppCompatActivity  {
                               final String  textaa = jsonObject.getString("rate_array");
                                 Log.i("textaaattt",textaa);
 
-
+                                StartSpeak(textaa);
 //                                 final Handler handler = new Handler();
-                                 Runnable runnable = new Runnable() {
+                                /* Runnable runnable = new Runnable() {
                                     @Override
                                     public void run() {
                                         StartSpeak(textaa);
@@ -242,7 +261,7 @@ public class HomeWebView extends AppCompatActivity  {
                                 };
 
 //Start
-                                handler.postDelayed(runnable, 5000);
+                                handler.postDelayed(runnable, 5000);*/
 
 
 

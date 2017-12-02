@@ -3,10 +3,12 @@ package com.example.prashantbehera.cricket;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
@@ -43,7 +45,8 @@ public class HomeWebView extends AppCompatActivity  {
     private TextToSpeech tts;
     LinearLayout llrefresh;
     String url;
-     String textaa;
+    final Handler handler = new Handler();
+//     String textaa;
     String idi;
     TextView tvspeak;
     private TextToSpeech ttsHindi;
@@ -65,7 +68,7 @@ public class HomeWebView extends AppCompatActivity  {
 //        textaa=tvspeak.getText().toString();
 
 
-            StartSpeak(textaa);
+
 
 
 
@@ -98,7 +101,9 @@ public class HomeWebView extends AppCompatActivity  {
     webview.loadUrl(url);*/
             web();
             texttospeech();
-//            speakOut();
+
+
+//
 
         } else {
             webview.setVisibility(View.GONE);
@@ -117,6 +122,7 @@ public class HomeWebView extends AppCompatActivity  {
 
                     web();
                     texttospeech();
+//                    StartSpeak(textaa);
 
 
 
@@ -129,6 +135,13 @@ public class HomeWebView extends AppCompatActivity  {
 
     }
 
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        handler.removeCallbacksAndMessages(null);
+        // insert here your instructions
+    }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void web() {
         WebSettings webSettings = webview.getSettings();
@@ -148,10 +161,16 @@ public class HomeWebView extends AppCompatActivity  {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
             if (webview.canGoBack()) {
                 webview.goBack();
+
+
             } else {
                 super.onBackPressed();
+                handler.removeCallbacksAndMessages(null);
             }
             return true;
+        }else if ((keyCode==KeyEvent.KEYCODE_HOME)) {
+
+            handler.removeCallbacksAndMessages(null);
         }
 
         return super.onKeyDown(keyCode, event);
@@ -183,9 +202,7 @@ public class HomeWebView extends AppCompatActivity  {
             if(url.indexOf("http://www.webpetalsoftware.com/cricket/web/new_live.php?match_id=") > -1 )
                 return false;
 
-       /* Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            webview.setWebViewClient(new WebViewClient());
-        activity.startActivity(intent);*/
+
 
 
             webView.setWebViewClient(new WebViewClient());
@@ -203,29 +220,43 @@ public class HomeWebView extends AppCompatActivity  {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("pppppppppp", response);
-                        Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
 
-                      /*  try {
-
-
+                        try
+                        {
                             JSONObject result = new JSONObject(response);
-                            JSONArray routearray = result.getJSONArray("otp_info");
-                            for (int i = 0; i < routearray.length(); i++) {
 
-                                textaa = routearray.getJSONObject(i).getString("user_login");
+                            JSONArray   routearray=result.getJSONArray("speak_rate");
+                            for (int i = 0; i < routearray.length(); i++) {
+                                JSONObject jsonObject = routearray.getJSONObject(i);
+                              final String  textaa = jsonObject.getString("rate_array");
+                                Log.i("textaaattt",textaa);
+
+
+//                                 final Handler handler = new Handler();
+                                 Runnable runnable = new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        StartSpeak(textaa);
+                                        handler.postDelayed(this, 5000);
+                                    }
+                                };
+
+//Start
+                                handler.postDelayed(runnable, 5000);
+
+
 
                             }
 
                         } catch (Exception e) {
                             e.printStackTrace();
-                        }*/
+                        }
 
 
-                      tvspeak.setText(response);
-                      textaa=tvspeak.getText().toString();
-                        Log.i("strrrrrr",textaa);
-                        Log.i(",.,.,..,.",tvspeak.getText().toString());
+//                      textaa=response;
+
+
+
 
                     }
                 },
@@ -282,4 +313,5 @@ public class HomeWebView extends AppCompatActivity  {
     private void speakWords(String speech) {
         tts.speak(speech, TextToSpeech.QUEUE_FLUSH, null);
     }
+
 }

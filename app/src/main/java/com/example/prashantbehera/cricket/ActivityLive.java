@@ -107,7 +107,7 @@ public class ActivityLive extends AppCompatActivity {
         toolbar.setTitle("Cricket Ground Line");
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab2);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fablive);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -262,4 +262,8 @@ public class ActivityLive extends AppCompatActivity {
             adapterLive.notifyDataSetChanged();
         }
     }
+
+
+
+
 }

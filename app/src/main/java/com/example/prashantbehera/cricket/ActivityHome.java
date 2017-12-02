@@ -138,6 +138,8 @@ public class ActivityHome extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.fab2:
+                Intent intent=new Intent(ActivityHome.this,AboutUs.class);
+                startActivity(intent);
 
 
                 break;

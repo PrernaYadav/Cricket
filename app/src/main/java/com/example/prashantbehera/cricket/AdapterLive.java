@@ -21,9 +21,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -244,6 +255,7 @@ public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> im
 
                     idd=id.getText().toString();
 
+
                     /*TextView textView = (TextView) itemView1.findViewById(R.id.id);
                     String iddd = textView.getText().toString();*/
 
@@ -315,7 +327,6 @@ public class AdapterLive extends RecyclerView.Adapter<AdapterLive.LiveHolder> im
             activity.startActivity(intent);
         }
     }
-
 
 
 }

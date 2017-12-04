@@ -47,7 +47,8 @@ public class HomeWebView extends AppCompatActivity  {
     String url;
     final Handler handler = new Handler();
 //     String textaa;
-    String idi;
+String idOffer = "";
+    String idi,idirc;
     TextView tvspeak;
     private TextToSpeech ttsHindi;
     String url1 = "http://www.webpetalsoftware.com/cricket/web/new_live.php?match_id=";
@@ -68,9 +69,11 @@ public class HomeWebView extends AppCompatActivity  {
 //        textaa=tvspeak.getText().toString();
 
 
-
-
-
+        //fetching values
+        Intent intent = getIntent();
+        idi = intent.getStringExtra("id");
+        String mp = intent.getStringExtra("fav");
+        url = url1 + idi + "& favourite=" + mp;
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -88,17 +91,10 @@ public class HomeWebView extends AppCompatActivity  {
         });
 
 
-        //fetching values
-        Intent intent = getIntent();
-         idi = intent.getStringExtra("id");
-        String mp = intent.getStringExtra("fav");
-        url = url1 + idi + "& favourite=" + mp;
-
         if (isOnline()) {
             webview.setVisibility(View.VISIBLE);
-
-
             web();
+
               Runnable runnable = new Runnable() {
                                     @Override
                                     public void run() {
@@ -161,6 +157,29 @@ public class HomeWebView extends AppCompatActivity  {
         handler.removeCallbacksAndMessages(null);
         // insert here your instructions
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                web();
+                texttospeech();
+                handler.postDelayed(this, 5000);
+            }
+        };
+
+//Start
+        handler.postDelayed(runnable, 5000);
+
+
+        /* web();
+        texttospeech();*/
+    }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void web() {
         WebSettings webSettings = webview.getSettings();
@@ -175,6 +194,7 @@ public class HomeWebView extends AppCompatActivity  {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
@@ -187,9 +207,10 @@ public class HomeWebView extends AppCompatActivity  {
                 handler.removeCallbacksAndMessages(null);
             }
             return true;
-        }else if ((keyCode==KeyEvent.KEYCODE_HOME)) {
+        }else if ((keyCode==KeyEvent.KEYCODE_POWER)) {
 
-            handler.removeCallbacksAndMessages(null);
+Log.d("power","power key pressed");
+
         }
 
         return super.onKeyDown(keyCode, event);
@@ -251,18 +272,6 @@ public class HomeWebView extends AppCompatActivity  {
                                 Log.i("textaaattt",textaa);
 
                                 StartSpeak(textaa);
-//                                 final Handler handler = new Handler();
-                                /* Runnable runnable = new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        StartSpeak(textaa);
-                                        handler.postDelayed(this, 5000);
-                                    }
-                                };
-
-//Start
-                                handler.postDelayed(runnable, 5000);*/
-
 
 
                             }
@@ -270,13 +279,6 @@ public class HomeWebView extends AppCompatActivity  {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-
-
-//                      textaa=response;
-
-
-
-
                     }
                 },
                 new Response.ErrorListener() {

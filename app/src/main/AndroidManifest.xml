@@ -40,10 +40,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityLive" />
+        <activity android:name=".HomeWebView" >
+
+
+        </activity>
+        <activity android:name=".ActivityLive" >
+            <intent-filter>
+                <action android:name="ACTIVITY_X" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+
+
+
+
+        </activity>
         <activity android:name=".ActivityScore" />
         <activity android:name=".ActivityHome" />
-        <activity android:name=".HomeWebView" />
+
         <activity android:name=".MainActivity" />
         <activity android:name=".AboutUs"></activity>
     </application>

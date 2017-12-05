@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/border_edittext"
-        android:hint="Enter Amount"
+        android:hint="Enter Odds"
         android:padding="10dp">
 
     </EditText>

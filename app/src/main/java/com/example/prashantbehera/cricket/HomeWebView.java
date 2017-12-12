@@ -94,11 +94,12 @@ String idOffer = "";
         if (isOnline()) {
             webview.setVisibility(View.VISIBLE);
             web();
+         //   texttospeech();
 
               Runnable runnable = new Runnable() {
                                     @Override
                                     public void run() {
-                                        web();
+//                                        web();
                                         texttospeech();
                                         handler.postDelayed(this, 5000);
                                     }
@@ -126,8 +127,9 @@ String idOffer = "";
                     llrefresh.setVisibility(View.GONE);
                     webview.setVisibility(View.VISIBLE);
 
-
-                    Runnable runnable = new Runnable() {
+                    web();
+                    texttospeech();
+                  /*  Runnable runnable = new Runnable() {
                         @Override
                         public void run() {
                             web();
@@ -137,7 +139,7 @@ String idOffer = "";
                     };
 
 //Start
-                    handler.postDelayed(runnable, 5000);
+                    handler.postDelayed(runnable, 5000);*/
 
 
 
@@ -163,11 +165,12 @@ String idOffer = "";
     protected void onStart()
     {
         super.onStart();
-
+        web();
+//        texttospeech();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                web();
+
                 texttospeech();
                 handler.postDelayed(this, 5000);
             }
@@ -186,6 +189,7 @@ String idOffer = "";
         webSettings.setJavaScriptEnabled(true);
         webSettings.setMediaPlaybackRequiresUserGesture(true);
         webSettings.setAllowContentAccess(true);
+        webview.reload();
         webview.setAccessibilityDelegate(new View.AccessibilityDelegate());
         WebViewClientImpl webViewClient = new WebViewClientImpl(this);
         webview.setWebViewClient(webViewClient);
@@ -273,6 +277,17 @@ Log.d("power","power key pressed");
 
                                 StartSpeak(textaa);
 
+                              /*  Runnable runnable = new Runnable() {
+                                    @Override
+                                    public void run() {
+//
+                                        StartSpeak(textaa);
+                                        handler.postDelayed(this, 5000);
+                                    }
+                                };
+
+//Start
+                                handler.postDelayed(runnable, 5000);*/
 
                             }
 

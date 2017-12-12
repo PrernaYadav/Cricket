@@ -42,19 +42,7 @@ public class ActivityHome extends AppCompatActivity implements View.OnClickListe
         web();
 
 
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab1);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                String shareBody = "Your App Link here";
-                String shareSub = "Your subject here";
-                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareSub);
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                startActivity(Intent.createChooser(sharingIntent, "Share using"));
-            }
-        });*/
+
         fab = (FloatingActionButton)findViewById(R.id.fab);
         fab1 = (FloatingActionButton)findViewById(R.id.fab1);
         fab2 = (FloatingActionButton)findViewById(R.id.fab2);
@@ -68,25 +56,6 @@ public class ActivityHome extends AppCompatActivity implements View.OnClickListe
         fab2.setOnClickListener(this);
         fab3.setOnClickListener(this);
     }
-
-       /* webview = (WebView) findViewById(R.id.webview);
-        webview.setWebViewClient(new MyCustomWebViewClient());
-        webview .getSettings().setJavaScriptEnabled(true);
-        webview .getSettings().setDomStorageEnabled(true);
-        webview.loadUrl("http://webpetalsoftware.com/cricket/web");*/
-
-
-
-
-
-       /* final String url = "http://webpetalsoftware.com/cricket/web";
-
-
-            webview.setWebViewClient(new MyCustomWebViewClient());
-            webview.getSettings().setJavaScriptEnabled(true);
-            webview.loadUrl(url);*/
-
-
 
 
 
